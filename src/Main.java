@@ -1,8 +1,8 @@
-import view.HomeView;
+import view.WeeklyLogView;
 
 public class Main {
     public static void main(String[] args) {
-        new HomeView();
+        new WeeklyLogView();
     }
     
 }
