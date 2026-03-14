@@ -106,15 +106,80 @@ public class WeeklyLogView extends JFrame {
             String time =workout.getLoggedDateTime().format(DateTimeFormatter.ofPattern("hh:mm a"));
 
             int rowIndex = findExcerciseRow(excercise);
-            int dayColumn
+            int dayColumn = getDayColumnIndex(day);
+
+            if(rowIndex == -1) {
+                Object[] row = new Object[10];
+                row[0] = excercise;
+                row[dayColumn] = weight;
+                row[8] = weight;
+                row[9] = time;
+                tableModel.addRow(row);
+            } else{
+                tableModel.setValueAt(weight, rowIndex, 8);
+            
+            }
+
+            tableModel.setValueAt(time, rowIndex, 9);
+            }
         }
     }
 
+    private int findExcerciseRow(String excerciseName) {
+        for (int i = 0; i < tableModel.getRowCOunt(); i++) {
+            Object value = tableModel.getValueAt(i, 0);
+            if (value != null && value.toString().equalsIgnoreCase(excerciseName)) {
+                return i;
+            }
+
+        }
+        return -1;
     }
 
+    private String getShortDay(Workout workout) {
+        String fullday = workout.getLoggedDateTime().getDayOfWeek().toString();
 
-
+        switch (fullday) {
+             case "MONDAY":
+                return "Mon";
+            case "TUESDAY":
+                return "Tue";
+            case "WEDNESDAY":
+                return "Wed";
+            case "THURSDAY":
+                return "Thu";
+            case "FRIDAY":
+                return "Fri";
+            case "SATURDAY":
+                return "Sat";
+            case "SUNDAY":
+                return "Sun";
+            default:
+                return "";
+        }
     }
+
+    private int getDayColumnIndex(String day) {
+        switch (day) {
+            case "Mon":
+                return 1;
+            case "Tue":
+                return 2;
+            case "Wed":
+                return 3;
+            case "Thu":
+                return 4;
+            case "Fri":
+                return 5;
+            case "Sat":
+                return 6;
+            case "Sun":
+                return 7;
+            default:
+                return -1;
+        }
+    }
+
 }
 
     
