@@ -67,8 +67,50 @@ public class WeeklyLogView extends JFrame {
             
             if (selectedRow == -1) {
                 JOptionPane.showMessageDialog(this, "Please select a workout to edit.");
+                return;
             }
-        })
+            String selectedExcercise = tableModel.getValueAt(selectedRow, 0).toString();
+
+            for (int i = 0; i < workouts.size(); i++) {
+                if (workouts.get(i).getWorkoutName().equalsIgnoreCase(selectedExcercise)) {
+                    new EditWorkoutView(this, workouts.get(i), i);
+                    setVisible(false);
+                    return;
+                }
+            }
+            
+        });
+
+        setContentPane(mainPanel);
+        setVisible(true);
+    }
+    
+    public void addWorkout(Workout workout) {
+        workouts.add(workout);
+        refreshTable();
+
+    }
+
+    public void updateWorkout(int index, Workout workout) {
+        workouts.set(index, workout);
+        refreshTable();
+    }
+
+    private void refreshTable() {
+        tableModel.setRowCount(0);
+
+        for (Workout workout : workouts) {
+            String excercise = workout.getWorkoutName();
+            double weight = workout.getWeight();
+            String day = getShortDay(workout);
+            String time =workout.getLoggedDateTime().format(DateTimeFormatter.ofPattern("hh:mm a"));
+
+            int rowIndex = findExcerciseRow(excercise);
+            int dayColumn
+        }
+    }
+
+    }
 
 
 
