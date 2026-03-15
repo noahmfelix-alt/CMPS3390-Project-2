@@ -1,5 +1,7 @@
 package models;
 
+import java.time.LocalDateTime;
+
 public class Workout {
     private String workoutName;
     private int sets;
@@ -12,8 +14,8 @@ public class Workout {
         this.sets = sets;
         this.reps = reps;
         this.weight = weight;
-        this.loggedDateTime loggedDateTime;
-        
+        this.loggedDateTime = loggedDateTime;
+
     }
 
     public String getWorkoutName() {
@@ -50,6 +52,17 @@ public class Workout {
 
     public void setWeight(double weight) {
         this.weight = weight;
+    }
+
+    @Override
+    public String toString() {
+        return "Workout{" +
+                "workoutName='" + workoutName + '\'' +
+                ", sets=" + sets +
+                ", reps=" + reps +
+                ", weight=" + weight +
+                ", loggedDateTime=" + loggedDateTime +
+                '}';
     }
 
 }

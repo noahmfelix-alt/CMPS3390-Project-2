@@ -1,6 +1,7 @@
 package view;
 
 import models.Workout;
+import models.WorkoutList;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -10,12 +11,14 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class WeeklyLogView extends JFrame {
+    private final WorkoutList workoutList;
     private final DefaultTableModel tableModel;
     private final JTable workoutTable;
     private final ArrayList<Workout> workouts;
 
     public WeeklyLogView() {
         workouts = new ArrayList<>();
+        workoutList = new WorkoutList();
 
         setTitle("Workout Tracker - Weekly Log");
         setSize(1000, 400);
@@ -70,11 +73,11 @@ public class WeeklyLogView extends JFrame {
             }
             String selectedExcercise = tableModel.getValueAt(selectedRow, 0).toString();
 
-            for (int i = 0; i < workouts.size(); i++) {
-                if (workouts.get(i).getWorkoutName().equalsIgnoreCase(selectedExcercise)) {
+            for (int i = 0; i < workoutList.getWorkouts().size(); i++) {
+                if (workoutList.getWorkouts().get(i).getWorkoutName().equalsIgnoreCase(selectedExcercise)) {
                     // I commented this out so it would at least open the view
-                    // new EditWorkoutView(this, workouts.get(i), i);
-                    setVisible(false);
+                    // new EditWorkoutView(this, workoutList.getWorkouts().get(i), i);
+                    setVisible(true);
                     return;
                 }
             }
@@ -86,20 +89,34 @@ public class WeeklyLogView extends JFrame {
     }
 
     public void addWorkout(Workout workout) {
-        workouts.add(workout);
+        workoutList.addWorkout(workout);
         refreshTable();
 
     }
 
+    public void addWorkouts(java.util.List<Workout> workouts) {
+        for (Workout workout : workouts) {
+            workoutList.addWorkout(workout);
+        }
+        refreshTable();
+    }
+
     public void updateWorkout(int index, Workout workout) {
-        workouts.set(index, workout);
+        workoutList.updateWorkout(index, workout);
+        refreshTable();
+    }
+
+    public void updateWorkouts(int index, java.util.List<Workout> workouts) {
+        for (Workout workout : workouts) {
+            workoutList.updateWorkout(index, workout);
+        }
         refreshTable();
     }
 
     private void refreshTable() {
         tableModel.setRowCount(0);
 
-        for (Workout workout : workouts) {
+        for (Workout workout : workoutList.getWorkouts()) {
             String excercise = workout.getWorkoutName();
             double weight = workout.getWeight();
             String day = getShortDay(workout);
