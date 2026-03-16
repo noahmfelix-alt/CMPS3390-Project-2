@@ -16,10 +16,6 @@ public class Workout {
         this.reps = reps;
         this.weight = weight;
         this.loggedDateTime = loggedDateTime;
-<<<<<<< HEAD
-
-=======
->>>>>>> b604d7a037c4597facf7fa70fc101b79bc8c3e59
     }
 
     public String getWorkoutName() {
@@ -58,22 +54,7 @@ public class Workout {
         this.weight = weight;
     }
 
-<<<<<<< HEAD
-    @Override
-    public String toString() {
-        return "Workout{" +
-                "workoutName='" + workoutName + '\'' +
-                ", sets=" + sets +
-                ", reps=" + reps +
-                ", weight=" + weight +
-                ", loggedDateTime=" + loggedDateTime +
-                '}';
-    }
-
-}
-=======
     public void setLoggedDateTime(LocalDateTime loggedDateTime) {
         this.loggedDateTime = loggedDateTime;
     }
 }
->>>>>>> b604d7a037c4597facf7fa70fc101b79bc8c3e59
