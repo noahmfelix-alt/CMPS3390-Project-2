@@ -1,6 +1,9 @@
 package models;
 
+import java.time.LocalDateTime;
+
 public class Workout {
+
     private String workoutName;
     private int sets;
     private int reps;
@@ -12,8 +15,7 @@ public class Workout {
         this.sets = sets;
         this.reps = reps;
         this.weight = weight;
-        this.loggedDateTime loggedDateTime;
-        
+        this.loggedDateTime = loggedDateTime;
     }
 
     public String getWorkoutName() {
@@ -52,4 +54,7 @@ public class Workout {
         this.weight = weight;
     }
 
+    public void setLoggedDateTime(LocalDateTime loggedDateTime) {
+        this.loggedDateTime = loggedDateTime;
+    }
 }
