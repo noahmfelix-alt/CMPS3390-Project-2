@@ -8,13 +8,12 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-
+import java.util.ArrayList;
 
 public class WeeklyLogView extends JFrame {
     private final WorkoutList workoutList;
     private final DefaultTableModel tableModel;
     private final JTable workoutTable;
-    
 
     public WeeklyLogView() {
         workoutList = new WorkoutList();
@@ -37,16 +36,15 @@ public class WeeklyLogView extends JFrame {
         mainPanel.add(titleLabel, BorderLayout.NORTH);
 
         tableModel = new DefaultTableModel(
-                new Object[]{"Exercise", "Sets", "Reps", "Weight", "Day", "Last Logged"},
-                0
-        ) {
+                new Object[] { "Exercise", "Sets", "Reps", "Weight", "Day", "Last Logged" },
+                0) {
             @Override
             public boolean isCellEditable(int row, int column) {
                 return false;
             }
         };
 
-       workoutTable = new JTable(tableModel);
+        workoutTable = new JTable(tableModel);
         workoutTable.setRowHeight(24);
         workoutTable.getTableHeader().setFont(new Font("SansSerif", Font.BOLD, 13));
         workoutTable.setFont(new Font("SansSerif", Font.PLAIN, 13));
@@ -99,8 +97,7 @@ public class WeeklyLogView extends JFrame {
                     this,
                     "Are you sure you want to delete this workout?",
                     "Delete Workout",
-                    JOptionPane.YES_NO_OPTION
-            );
+                    JOptionPane.YES_NO_OPTION);
 
             if (confirm == JOptionPane.YES_OPTION) {
                 workoutList.removeWorkout(selectedRow);
@@ -122,6 +119,13 @@ public class WeeklyLogView extends JFrame {
         refreshTable();
     }
 
+    // public void addWorkouts(java.util.List<Workout> workouts) {
+    // for (Workout workout : workouts) {
+    // workoutList.addWorkout(workout);
+    // }
+    // refreshTable();
+    // }
+
     public void updateWorkout(int index, Workout workout) {
         workoutList.updateWorkout(index, workout);
         refreshTable();
@@ -133,7 +137,7 @@ public class WeeklyLogView extends JFrame {
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("MM/dd/yyyy hh:mm a");
 
         for (Workout workout : workoutList.getWorkouts()) {
-            tableModel.addRow(new Object[]{
+            tableModel.addRow(new Object[] {
                     workout.getWorkoutName(),
                     workout.getSets(),
                     workout.getReps(),

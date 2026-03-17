@@ -2,6 +2,8 @@ package view;
 
 import models.Workout;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.*;
 import java.awt.*;
 import java.time.LocalDateTime;
@@ -103,8 +105,7 @@ public class AddWorkoutView extends JDialog {
             double weight = Double.parseDouble(weightField.getText().trim());
             LocalDateTime loggedDateTime = LocalDateTime.parse(
                     dateTimeField.getText().trim(),
-                    DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")
-            );
+                    DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
 
             if (name.isEmpty()) {
                 JOptionPane.showMessageDialog(this, "Workout name cannot be empty.");
