@@ -9,15 +9,22 @@ import java.awt.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 // import java.util.ArrayList;
+import com.google.gson.Gson; 
+import com.google.gson.GsonBuilder;
+
 
 public class WeeklyLogView extends JFrame {
     // Main window upon startup
-    
+
     private final WorkoutList workoutList;
     private final DefaultTableModel tableModel;
     private final JTable workoutTable;
 
     public WeeklyLogView() {
+        // Gson testing
+        Gson gson = new Gson();
+        System.out.println(gson.toJson("test"));
+
         workoutList = new WorkoutList();
 
         setTitle("Workout Tracker");

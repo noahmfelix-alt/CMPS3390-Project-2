@@ -12,7 +12,7 @@ import java.time.format.DateTimeParseException;
 
 public class AddWorkoutView extends JDialog {
     // View for adding Workouts
-    
+
     private JTextField workoutNameField;
     private JTextField setsField;
     private JTextField repsField;
@@ -58,12 +58,10 @@ public class AddWorkoutView extends JDialog {
         formPanel.add(setsField);
         formPanel.add(new JLabel("Reps:"));
         formPanel.add(repsField);
-        formPanel.add(new JLabel("Weight:"));
+        formPanel.add(new JLabel("Weight (lbs.):"));
         formPanel.add(weightField);
         formPanel.add(new JLabel("Date & Time:"));
         formPanel.add(dateTimeField);
-
-        mainPanel.add(formPanel, BorderLayout.CENTER);
 
         workoutListModel = new DefaultListModel<>();
         JList<String> workoutList = new JList<>(workoutListModel);
@@ -117,15 +115,15 @@ public class AddWorkoutView extends JDialog {
                 return;
             }
 
-            if (weight < 0) {
-                JOptionPane.showMessageDialog(this, "Weight cannot be negative.");
+            if (weight <= 0) {
+                JOptionPane.showMessageDialog(this, "Weight can only be positive.");
                 return;
             }
 
             Workout workout = new Workout(name, sets, reps, weight, loggedDateTime);
             dailyWorkouts.add(workout);
 
-            workoutListModel.addElement(name + " - " + sets + " sets x " + reps + " reps @ " + weight + " lbs");
+            workoutListModel.addElement(String.format("%s - %d x %d @ %.1f lbs.", name, sets, reps, weight));
 
             workoutNameField.setText("");
             setsField.setText("");
