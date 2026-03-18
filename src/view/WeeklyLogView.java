@@ -1,7 +1,6 @@
 package view;
 
-import models.Workout;
-import models.WorkoutList;
+import models.*;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -9,8 +8,6 @@ import java.awt.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 // import java.util.ArrayList;
-import com.google.gson.Gson; 
-import com.google.gson.GsonBuilder;
 
 
 public class WeeklyLogView extends JFrame {
@@ -22,10 +19,11 @@ public class WeeklyLogView extends JFrame {
 
     public WeeklyLogView() {
         // Gson testing
-        Gson gson = new Gson();
-        System.out.println(gson.toJson("test"));
+        // Gson gson = new Gson();
+        // System.out.println(gson.toJson("test"));
 
         workoutList = new WorkoutList();
+        workoutList.addWorkouts(WorkoutStorage.load());
 
         setTitle("Workout Tracker");
         setSize(1000, 400);
@@ -52,6 +50,7 @@ public class WeeklyLogView extends JFrame {
                 return false;
             }
         };
+        refreshTable();
 
         workoutTable = new JTable(tableModel);
         workoutTable.setRowHeight(24);
@@ -110,6 +109,7 @@ public class WeeklyLogView extends JFrame {
 
             if (confirm == JOptionPane.YES_OPTION) {
                 workoutList.removeWorkout(selectedRow);
+                WorkoutStorage.save(workoutList.getWorkouts());
                 refreshTable();
             }
         });
@@ -120,11 +120,13 @@ public class WeeklyLogView extends JFrame {
 
     public void addWorkout(Workout workout) {
         workoutList.addWorkout(workout);
+        WorkoutStorage.save(workoutList.getWorkouts());
         refreshTable();
     }
 
     public void addWorkouts(java.util.List<Workout> workouts) {
         workoutList.addWorkouts(workouts);
+        WorkoutStorage.save(workoutList.getWorkouts());
         refreshTable();
     }
 
@@ -137,6 +139,7 @@ public class WeeklyLogView extends JFrame {
 
     public void updateWorkout(int index, Workout workout) {
         workoutList.updateWorkout(index, workout);
+        WorkoutStorage.save(workoutList.getWorkouts());
         refreshTable();
     }
 
