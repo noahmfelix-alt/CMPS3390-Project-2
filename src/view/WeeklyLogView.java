@@ -34,6 +34,12 @@ public class WeeklyLogView extends JFrame {
         mainPanel.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
         mainPanel.setBackground(new Color(245, 247, 250));
 
+        try {
+            UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
         LocalDate today = LocalDate.now();
         String todayText = "Workout Log - " + today.format(DateTimeFormatter.ofPattern("MMMM d, yyyy"));
 
