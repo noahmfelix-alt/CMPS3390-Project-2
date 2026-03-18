@@ -3,7 +3,8 @@ package models;
 import java.time.LocalDateTime;
 
 public class Workout {
-
+    // Represents single workout entry
+    
     private String workoutName;
     private int sets;
     private int reps;

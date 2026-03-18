@@ -8,7 +8,8 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 public class EditWorkoutView extends JDialog {
-
+    // View for editing Workouts
+    
     private final WeeklyLogView parentView;
     private final int workoutIndex;
 

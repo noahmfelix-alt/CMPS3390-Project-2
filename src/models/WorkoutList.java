@@ -3,6 +3,8 @@ package models;
 import java.util.*;
 
 public class WorkoutList {
+    // List of workouts - self-explanatory
+    
     private List<Workout> workouts;
 
     public WorkoutList() {

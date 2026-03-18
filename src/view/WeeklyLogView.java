@@ -8,9 +8,11 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
+// import java.util.ArrayList;
 
 public class WeeklyLogView extends JFrame {
+    // Main window upon startup
+    
     private final WorkoutList workoutList;
     private final DefaultTableModel tableModel;
     private final JTable workoutTable;

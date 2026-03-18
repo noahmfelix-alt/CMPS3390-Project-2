@@ -9,10 +9,10 @@ import java.awt.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class AddWorkoutView extends JDialog {
+    // View for adding Workouts
+    
     private JTextField workoutNameField;
     private JTextField setsField;
     private JTextField repsField;
